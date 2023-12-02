@@ -1,0 +1,92 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                              MoonWalker MT5.mq5 |
+//|                      Copyright 2022, Forex Robot Easy Team       |
+//|                                   https://www.forexroboteasy.com |
+//+------------------------------------------------------------------+
+#property copyright 'Copyright 2022, Forex Robot Easy Team'
+#property link      'https://www.forexroboteasy.com'
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   // Check if current time is within the two-hour window of lowest volatility
+   if (IsNighttime())
+   {
+      // Perform nighttime scalping trades
+      PerformScalpingTrades();
+   }
+   
+   // Switch pairs every month in full automatic mode
+   SwitchPairsMonthly();
+   
+   // Detect time zone and daylight saving time
+   DetectTimeZone();
+   
+   // Place only one order at a time
+   PlaceSingleOrder();
+   
+   return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Function to check if current time is within the two-hour window   |
+//| of lowest volatility                                             |
+//+------------------------------------------------------------------+
+bool IsNighttime()
+{
+   datetime currentTime = TimeLocal();
+   int startHour = 22;  // Start hour for nighttime scalping
+   int endHour = 24;    // End hour for nighttime scalping
+   
+   datetime startTime = TimeCurrent();
+   DateTimeSetHour(startTime, startHour);
+   DateTimeSetMinute(startTime, 0);
+   
+   datetime endTime = TimeCurrent();
+   DateTimeSetHour(endTime, endHour);
+   DateTimeSetMinute(endTime, 0);
+   
+   if (currentTime >= startTime && currentTime < endTime)
+      return true;
+   
+   return false;
+}
+
+//+------------------------------------------------------------------+
+//| Function to perform nighttime scalping trades                    |
+//+------------------------------------------------------------------+
+void PerformScalpingTrades()
+{
+   // Place trades based on specific scalping strategy
+   // Insert your scalping trading logic here
+}
+
+//+------------------------------------------------------------------+
+//| Function to switch pairs every month in full automatic mode       |
+//+------------------------------------------------------------------+
+void SwitchPairsMonthly()
+{
+   // Switch pairs every month
+   // Insert your code to switch pairs here
+}
+
+//+------------------------------------------------------------------+
+//| Function to detect time zone and daylight saving time             |
+//+------------------------------------------------------------------+
+void DetectTimeZone()
+{
+   // Detect time zone and daylight saving time
+   // Insert your code to detect time zone here
+}
+
+//+------------------------------------------------------------------+
+//| Function to place only one order at a time                        |
+//+------------------------------------------------------------------+
+void PlaceSingleOrder()
+{
+   // Place only one order at a time
+   // Insert your code to place single order here
+}
